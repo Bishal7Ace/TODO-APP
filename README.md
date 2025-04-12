@@ -27,6 +27,16 @@ Whether you're organizing your personal life or work routine — this app keeps 
 ---
 
 ## 📸 Visual Glimpse
+| Dashboard                     | 
+|------------------------------|
+|  ![20](https://github.com/user-attachments/assets/0b741e5e-c892-4e11-81ab-bbd1c268371f)| 
+|  ![21](https://github.com/user-attachments/assets/da669121-df73-4821-9dba-c0e210c34da2)| 
+|  ![22](https://github.com/user-attachments/assets/63f2227d-f189-425d-8e87-86535573ca4c)| 
+|  ![23](https://github.com/user-attachments/assets/8ec6b48c-46c3-4828-9c7e-56931774884e)| 
+|  ![24](https://github.com/user-attachments/assets/944c218b-7e1a-4e76-8002-07b3b0c91163)| 
+|  ![25](https://github.com/user-attachments/assets/95c2ff6c-df70-4f9f-956a-a81114e4e85a)| 
+|  ![27](https://github.com/user-attachments/assets/b3e2b59f-81bc-4fa4-a4df-fbf622c30e51)| 
+
 
 
 
@@ -66,3 +76,16 @@ python manage.py createsuperuser
 
 # Run the app
 python manage.py runserver
+
+```
+## 🧭 App Flow
+
+```mermaid
+graph TD
+    A[🟢 User Login/Register] --> B[📋 View Dashboard]
+    B --> C[➕ Add Task]
+    B --> D[🔍 Filter by Category or Status]
+    B --> E[🖊️ Edit / 🗑️ Delete Task]
+    C --> F[📅 Assign Due Date]
+    F --> G[✅ Mark as Complete]
+    G --> H[📊 Task Stats Updated]
