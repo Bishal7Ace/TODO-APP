@@ -1,0 +1,72 @@
+{% load static tailwind_tags %}
+{% load static %}
+{% url 'login' as path_to_login %}
+{% url 'main' as path_to_main_page %}
+{% url 'register' as path_to_register_page %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+
+    <title>TodoApp - {% block title %}{% endblock title %}</title>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    {% if request.path != path_to_main_page and request.path != path_to_login and request.path != path_to_register_page %}
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-white shadow-md fixed h-full transition-all duration-300 z-10">
+            {% include 'todoapp/sidebar.html' %}
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 ml-64 p-6 transition-all duration-300">
+    {% endif %}
+        
+            {% block content %}
+            {% endblock content %}
+        
+    {% if request.path != path_to_main_page and request.path != path_to_login and request.path != path_to_register_page %}
+        </main>
+    </div>
+    {% endif %}
+
+    <!-- Alpine.js (for interactivity) -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
+    <script>
+        // Sidebar toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const openBtn = document.getElementById('openbutton');
+            const closeBtn = document.getElementById('closebutton');
+            const sidebar = document.getElementById('mySidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            
+            function openSidebar() {
+                sidebar.classList.remove('-translate-x-full');
+                overlay.classList.remove('hidden');
+                openBtn.classList.add('hidden'); // Hide hamburger when sidebar opens
+                document.body.style.overflow = 'hidden';
+            }
+            
+            function closeSidebar() {
+                sidebar.classList.add('-translate-x-full');
+                overlay.classList.add('hidden');
+                openBtn.classList.remove('hidden'); // Show hamburger when sidebar closes
+                document.body.style.overflow = '';
+            }
+            
+            if (openBtn) openBtn.addEventListener('click', openSidebar);
+            if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
+            if (overlay) overlay.addEventListener('click', closeSidebar);
+        });
+    </script>
+</body>
+</html>
